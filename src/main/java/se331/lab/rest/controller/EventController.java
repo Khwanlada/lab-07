@@ -98,6 +98,13 @@ public class EventController {
         for (int i = firstIndex; i < firstIndex + perPage; i++) {
             output.add(eventList.get(i));
         }
-        return ResponseEntity.ok(output);
+        try{
+            for(int i = firstIndex; i < firstIndex + perPage; i++){
+                output.add(eventList.get(i));
+            }
+            return ResponseEntity.ok(output);
+        }catch (IndexOutOfBoundsException ex){
+            return  ResponseEntity.ok(output);
+        }
     }
 }
